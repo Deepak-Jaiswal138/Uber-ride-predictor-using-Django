@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Django project</title>
+</head>
+<body bgcolor="#212121">
+<div id="main">
+<h1 align="center" style="color:red">Uber Rides Prediction</h1>
+<hr/>
+<div>
+<form action="{% url 'test' %}" method="post">
+    {% csrf_token %}
+    <input type="number" name="ppw" placeholder="Enter Price Per Week" required=""/><br/>
+    <input type="number" name="pn" placeholder="Enter Population" required=""/><br/>
+    <input type="number" name="mi" placeholder="Enter Monthly Income" required=""/><br/>
+    <input type="number" name="appw" placeholder="Enter Average Parking Per Week" required=""/><br/><br/>
+    <input type="submit" value="Predict"/>
+    <br/><br/>
+    <hr/>
+    <table border="1">
+        <tr>
+            <th>Price Per Week</th>
+            <th>Population</th>
+            <th>Monthly Income</th>
+            <th>Average Parking Per Week</th>
+            <th>No of riders</th>
+        </tr>
+        {% for r in res %}
+        <tr>
+            <td>{{ r.ppw }}</td>
+            <td>{{ r.pn }}</td>
+            <td>{{ r.mi }}</td>
+            <td>{{ r.appw }}</td>
+            <td>{{ r.result }}</td>
+        </tr>
+        {% endfor %}
+    </table>
+</form>
+</div>
+</div>
+</body>
+</html>
